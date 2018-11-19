@@ -21,9 +21,10 @@ DELETE FROM "accounts" WHERE ("city" = 'miami' OR "city" = 'phoenix') AND "trans
 Stretch Goal Questions (word problems)
 
 Anthony moved to Santa Fe.
-
+UPDATE "accounts" SET "city" = 'santa fe' WHERE "username" = 'anthony';
 Grace closed her account.
-
-Travis made a withdrawl of $20,000. What's their new balance? NOTE: Research RETURNING
-
+DELETE FROM "accounts" WHERE "username" = 'grace';
+Travis made a withdrawl of $20,000. What is their new balance? NOTE: Research RETURNING
+UPDATE "accounts" SET "account_balance" = "account_balance" - 20000 WHERE "username" = 'travis' RETURNING "account_balance" AS "new_balance";
 The Bank needs to track last names. NOTE: Research ALTER TABLE https://www.postgresql.org/docs/10/static/sql-altertable.html
+ALTER TABLE "accounts" ADD COLUMN "last_name" varchar(20) NOT NULL; -- last names are often longer than user ids 
